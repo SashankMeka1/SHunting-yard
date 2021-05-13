@@ -5,9 +5,9 @@ class node{
 	private:
 	node * next;
 	char value;//set up variables getters setters
-	node * prev;
 	tree_node * tree;
 	public:
+	~node();
 	tree_node * get_tree();
 	node(char in_value, tree_node * in_tree);
 	node * getnext();

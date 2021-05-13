@@ -6,6 +6,7 @@ void queue::pop(){//pop and go to the next one
 		node * to_delete = bottom;
 		bottom = bottom->getnext();
 		delete to_delete;
+		to_delete = nullptr;
 	}
 }
 void queue::push(node * in_node){//push onto queue

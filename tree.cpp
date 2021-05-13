@@ -28,7 +28,7 @@ int tree::get_precedence(char input){
 char* tree::shunting(char * input){//loop throgh input string
 	for(int i = 0; input[i] != '\0'; ++i){
 		if(isalnum(input[i])){//add numbers and variables onto printqueu
-			main_queue->push(new node(input[i], nullptr));
+			main_queue->push(new node(input[i], NULL));
 		}
 		else if(input[i] == ')'){//if right bracket pop off until left bracket is seen
 			while(main_stack->peak() and main_stack->peak()->getvalue() != '('){
@@ -38,14 +38,14 @@ char* tree::shunting(char * input){//loop throgh input string
 			main_stack->pop(true);		
 		}
 		else if(input[i] == '('){//push left bracket
-			main_stack->push(new node(input[i], nullptr));
+			main_stack->push(new node(input[i], NULL));
 		}
 		else if(input[i] != ' '){//pop off operators from stack if they have more precedence then add new operator
 			while(main_stack->peak() and get_precedence(main_stack->peak()->getvalue()) >= get_precedence(input[i])){
 				main_queue->push(main_stack->peak());
 				main_stack->pop(false);
 			}
-			main_stack->push(new node(input[i], nullptr));
+			main_stack->push(new node(input[i], NULL));
 		}
 
 	}
@@ -68,7 +68,7 @@ void tree::build_tree(char * input){
 	input = shunting(input);
 	for(int i = 0; i < tree_size; i++){//use stack to build tree from postfix
 		if(isalnum(input[i])){//add variables and numbers to stack
-			tree_stack->push(new node(input[i], new tree_node(input[i], nullptr, nullptr)));	
+			tree_stack->push(new node(input[i], new tree_node(input[i], NULL, NULL)));	
 		}
 		else{//if an operator, then just take previous two operands and build tree out of them
 			right = tree_stack->peak()->get_tree();
@@ -80,7 +80,7 @@ void tree::build_tree(char * input){
 		}
 	}//remaining node is tree node
 	root = tree_stack->peak()->get_tree();
-	tree_stack->pop(true);
+	//tree_stack->pop(true);
 }
 void tree::inorder(tree_node * root){//inorder postorder and preorder traversals for infix postfix and prefix respectively
 	if(root->left){

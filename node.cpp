@@ -9,6 +9,9 @@ tree_node * node::get_tree(){//give the tree
 node * node::getnext(){//get next node
 	return next;
 }
+node::~node(){
+	return;
+}
 void node::setnext(node * in_node){//ste teh next node
 	next = in_node;
 }
@@ -17,10 +20,4 @@ char node::getvalue(){//get the node's value
 }
 void node::setvalue(char in_char){//set the value
 	value = in_char;
-}
-node * node::getprev(){//get the previous node for stacks
-	return prev;
-}
-void node::setprev(node*in_node){//set the previous node
-	prev = in_node;
 }
